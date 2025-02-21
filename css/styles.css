@@ -1,0 +1,335 @@
+/* General Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding-top: 2rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #FFFAF1;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Grey header */
+    color: #fff;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem; /* Increased gap for better spacing */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #FFFAF1; /* Off-white text */
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #0047ab, #20B2AA, #FFC300); /* Restored Gradient */
+    transition: background 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+/* Gradient Logo */
+.gradient-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0047ab, #20B2AA, #FFC300);
+    background-size: 200%; /* Less drastic gradient shift */
+    animation: gradient-shift 4s ease infinite; /* Slower animation */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.gradient-logo:hover {
+    transform: scale(1.2); /* Expand on hover */
+}
+
+.gradient-logo:hover .logo-icon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.logo-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: flex;
+    gap: 10px;
+}
+
+.logo-icon img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Hero Section */
+.hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20vh 2rem;
+    text-align: left;
+    min-height: 100vh;
+}
+
+#hero-text {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #333;
+    line-height: 1.2;
+}
+
+.resume-container {
+    margin-top: 10vh; /* Pushes the button lower */
+    display: flex;
+    justify-content: flex-start; /* Aligns button to the left */
+    opacity: 0; /* Initially hidden */
+    animation: fadeIn 1s forwards 3s; /* Fades in after text animation */
+}
+
+.resume-link {
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 1rem 1rem;
+    background-color: #333;
+    color: #FFFAF1;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.resume-link:hover {
+    background-color: #666;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* About Me Section */
+.about-me {
+    max-width: 1200px;
+    margin: 10vh auto;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background-color: #333;
+    color: #fff;
+    border-radius: 15px;
+}
+
+.about-text .intro-statement {
+    font-size: 2.5rem; /* Larger text to emphasize your degree, college, and graduation */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #fff; /* Ensures the text remains consistent with the about section’s color */
+}
+
+.about-me img {
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+.about-text {
+    flex: 1;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Experience Section */
+.experience {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.job {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.job.right-align {
+    text-align: right; /* Ensures the job title and description are aligned right */
+}
+
+.job.right-align ul {
+    display: inline-block; /* Ensures the bullets stay with the text */
+    text-align: left; /* Aligns the text within the bullet list to the left */
+    list-style-position: inside; /* Keeps bullet points aligned with the text */
+    padding-left: 0; /* Removes extra padding */
+    margin-right: 0; /* Prevents shifting */
+}
+
+/* Contact Page Styles */
+.contact {
+    max-width: 800px;
+    margin: 10vh auto;
+    padding: 2rem;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.contact a {
+    color: #FFD700; /* Highlight email and links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.contact-links {
+    margin-top: 1.5rem;
+}
+
+.contact-links a img {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.contact-links a img:hover {
+    transform: scale(1.2);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    width: 100%;
+    margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 15vh 1rem;
+    }
+
+    #hero-text {
+        font-size: 3rem;
+    }
+
+    .about-me {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-me img {
+        max-width: 200px;
+    }
+
+    .job {
+        text-align: center;
+    }
+
+    .job.right-align {
+        text-align: center;
+    }
+}
+
+.career-objectives, .it-skills, .education, .awards, .memberships {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background-color: #FFFAF1;
+    border-radius: 15px;
+    color: #333;
+}
+    
+.career-objectives h2, .it-skills h2, .education h2, .awards h2, .memberships h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+    
+.it-skills ul, .awards ul, .memberships ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+}
+
+/* Carousel container with a thick black border and curved corners */
+#infoCarousel {
+    border: 5px solid #000;
+    border-radius: 15px;
+    overflow: hidden;
+}
+  
+/* Customize Carousel Arrows to be black */
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    background-image: url("../assets/icons/arrow.png") !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 50px;  /* You can adjust the size as needed */
+    height: 50px;
+    background-color: transparent;
+}
+  
+.carousel-control-prev-icon {
+    transform: none;
+}
+
+/* Flip the next arrow so it points right */
+.carousel-control-next-icon {
+    transform: scaleX(-1);
+}
+
+.carousel-content {
+    max-width: 800px;  /* Adjust this value as needed */
+    margin: 0 auto;    /* Centers the content horizontally */
+    text-align: center;
+}
+
+/* Projects Page Section */
+.projects-section {
+    max-width: 1200px;
+    margin: 10vh auto;
+    padding: 2rem;
+}
