@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lines = [
         "HI, I'M",
         "COLE PLYMPTON",
-        "IT PROBLEM SOLVER"
+        "IT SPECIALIST & DIGITAL SOLUTIONS DEVELOPER"
     ];
 
     const heroText = document.getElementById("hero-text");
@@ -27,29 +27,27 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } else {
             // Show resume link after text animation finishes
-            document.getElementById("resume-container").classList.remove("hidden");
+            const resumeContainer = document.getElementById("resume-container");
+            if (resumeContainer) {
+                resumeContainer.classList.remove("hidden");
+            }
         }
     }
 
-    typeWriter();
+    // Only start typing animation if hero text element exists
+    if (heroText) {
+        typeWriter();
+    }
 
-
-    // Add LinkedIn and Bitbucket icons to gradient logo
+    // Make the gradient logo clickable to go to home page
     const gradientLogo = document.querySelector(".gradient-logo");
-    const logoIcons = `
-        <div class="logo-icon">
-            <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">
-                <img src="assets/icons/linkedin.png" alt="LinkedIn">
-            </a>
-            <a href="https://bitbucket.org/your-bitbucket" target="_blank">
-                <img src="assets/icons/bitbucket.png" alt="Bitbucket">
-            </a>
-        </div>
-    `;
-    gradientLogo.insertAdjacentHTML("beforeend", logoIcons);
-});
+    if (gradientLogo) {
+        gradientLogo.addEventListener("click", () => {
+            window.location.href = "index.html";
+        });
+    }
 
-document.addEventListener("DOMContentLoaded", () => {
+    // Set active navigation link based on current page
     const currentPath = window.location.pathname.split("/").pop() || "index.html"; 
     const navLinks = document.querySelectorAll(".nav-links a");
 

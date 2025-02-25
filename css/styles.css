@@ -1,16 +1,47 @@
 /* General Styles */
+:root {
+    --main-bg-color: #FFFAF1;
+    --dark-bg-color: #333;
+    --text-color: #333;
+    --light-text-color: #FFFAF1;
+    --accent-gradient: linear-gradient(90deg, #0047ab, #20B2AA, #FFC300);
+    --border-radius: 15px;
+    --section-padding: 2rem;
+    --content-max-width: 1200px;
+    --global-margin: 2rem; /* Standard margin for all sections */
+}
+
 html {
     scroll-behavior: smooth;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 body {
     margin: 0;
-    padding-top: 2rem;
+    padding-top: 5rem;
     font-family: Arial, sans-serif;
-    color: #333;
+    color: var(--text-color);
     line-height: 1.6;
-    background-color: #FFFAF1;
+    background-color: var(--main-bg-color);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Center content wrapper */
+.content-wrapper {
+    max-width: var(--content-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--global-margin);
+    padding-right: var(--global-margin);
+    width: 100%;
 }
 
 /* Header */
@@ -19,13 +50,14 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #333; /* Grey header */
-    color: #fff;
+    background-color: var(--dark-bg-color);
+    color: var(--light-text-color);
     z-index: 1000;
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-links {
@@ -33,16 +65,21 @@ header {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 1.5rem; /* Increased gap for better spacing */
+    gap: 1.5rem;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #FFFAF1; /* Off-white text */
+    color: var(--light-text-color);
     font-size: 1.5rem;
     font-weight: bold;
     position: relative;
     padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #FFC300;
 }
 
 .nav-links a.active::after {
@@ -52,47 +89,91 @@ header {
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(90deg, #0047ab, #20B2AA, #FFC300); /* Restored Gradient */
+    background: var(--accent-gradient);
     transition: background 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
-/* Gradient Logo */
+/* Logo Container and Animation */
+.logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .gradient-logo {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     background: linear-gradient(135deg, #0047ab, #20B2AA, #FFC300);
-    background-size: 200%; /* Less drastic gradient shift */
-    animation: gradient-shift 4s ease infinite; /* Slower animation */
+    background-size: 200%;
+    animation: gradient-shift 4s ease infinite;
     position: relative;
-    overflow: hidden;
     transition: transform 0.3s ease;
+    cursor: pointer; /* Make it clear this is clickable */
+    z-index: 2;
 }
 
-.gradient-logo:hover {
-    transform: scale(1.2); /* Expand on hover */
+.logo-container:hover .gradient-logo {
+    transform: scale(1.2) rotate(360deg);
+    transition: transform 0.5s ease;
 }
 
-.gradient-logo:hover .logo-icon {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.logo-icon {
+/* Social icons wrapper */
+.social-icons-wrapper {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    left: 70px; /* Position to the right of the logo */
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    overflow: hidden;
+    width: 0;
+    transition: width 0.5s ease;
+    height: 60px;
+    align-items: center;
 }
 
-.logo-icon img {
+.logo-container:hover .social-icons-wrapper {
+    width: 170px; /* Width to accommodate all icons */
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.logo-container:hover .social-icon {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Staggered animation for social icons */
+.logo-container:hover .social-icon:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.logo-container:hover .social-icon:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.logo-container:hover .social-icon:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.social-icon img {
     width: 24px;
     height: 24px;
-    cursor: pointer;
 }
 
 @keyframes gradient-shift {
@@ -103,41 +184,61 @@ header {
 
 /* Hero Section */
 .hero {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20vh 2rem;
-    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: var(--content-max-width);
+    padding: 0 var(--global-margin);
+    text-align: left;
 }
 
 #hero-text {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 800;
-    color: #333;
+    color: var(--text-color);
     line-height: 1.2;
+    text-align: left;
+    word-wrap: break-word;
 }
 
 .resume-container {
-    margin-top: 10vh; /* Pushes the button lower */
+    margin-top: 10vh;
     display: flex;
-    justify-content: flex-start; /* Aligns button to the left */
-    opacity: 0; /* Initially hidden */
-    animation: fadeIn 1s forwards 3s; /* Fades in after text animation */
+    justify-content: flex-start;
+    opacity: 0;
+    animation: fadeIn 1s forwards 4s;
 }
 
 .resume-link {
     display: inline-block;
     font-size: 1.2rem;
-    padding: 1rem 1rem;
-    background-color: #333;
-    color: #FFFAF1;
+    padding: 1rem 1.5rem;
+    background-color: var(--dark-bg-color);
+    color: var(--light-text-color);
     border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .resume-link:hover {
-    background-color: #666;
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resume-link:active {
+    transform: translateY(0);
 }
 
 @keyframes fadeIn {
@@ -147,27 +248,30 @@ header {
 
 /* About Me Section */
 .about-me {
-    max-width: 1200px;
+    max-width: calc(var(--content-max-width) - 2 * var(--global-margin));
     margin: 10vh auto;
-    padding: 2rem;
+    padding: var(--section-padding);
     display: flex;
     align-items: center;
     gap: 2rem;
-    background-color: #333;
-    color: #fff;
-    border-radius: 15px;
+    background-color: var(--dark-bg-color);
+    color: var(--light-text-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
 
 .about-text .intro-statement {
-    font-size: 2.5rem; /* Larger text to emphasize your degree, college, and graduation */
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    color: #fff; /* Ensures the text remains consistent with the about section’s color */
+    color: var(--light-text-color);
 }
 
 .about-me img {
     max-width: 300px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .about-text {
@@ -176,50 +280,135 @@ header {
     line-height: 1.6;
 }
 
+/* Carousel Section */
+.carousel-section {
+    max-width: calc(var(--content-max-width) - 2 * var(--global-margin));
+    width: 100%;
+    margin: 4rem auto;
+    padding: 0;
+}
+
+#infoCarousel {
+    border: 5px solid #000;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+  
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    background-image: url("../assets/icons/arrow.png") !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+}
+  
+.carousel-control-prev-icon {
+    transform: none;
+}
+
+.carousel-control-next-icon {
+    transform: scaleX(-1);
+}
+
+.carousel-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem;
+}
+
+.carousel-content h2 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
 /* Experience Section */
 .experience {
-    max-width: 1200px;
+    max-width: calc(var(--content-max-width) - 2 * var(--global-margin));
     margin: 4rem auto;
-    padding: 2rem;
+    padding: var(--section-padding);
     text-align: center;
 }
 
-.job {
+.experience h2 {
     margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.experience h2::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: var(--accent-gradient);
+    bottom: 0;
+    left: 25%;
+}
+
+.job {
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.job.left-align {
     text-align: left;
+    padding-left: 0;
+    padding-right: 5%; 
 }
 
 .job.right-align {
-    text-align: right; /* Ensures the job title and description are aligned right */
+    text-align: right;
+    padding-right: 0;
+    padding-left: 5%;
+}
+
+.job h3 {
+    color: #0047ab;
+    margin-bottom: 0.5rem;
+}
+
+.job ul {
+    list-style-type: disc;
+    margin-top: 1rem;
 }
 
 .job.right-align ul {
-    display: inline-block; /* Ensures the bullets stay with the text */
-    text-align: left; /* Aligns the text within the bullet list to the left */
-    list-style-position: inside; /* Keeps bullet points aligned with the text */
-    padding-left: 0; /* Removes extra padding */
-    margin-right: 0; /* Prevents shifting */
+    display: inline-block;
+    text-align: left;
+    list-style-position: inside;
+    padding-left: 0;
+    margin-right: 0;
 }
 
 /* Contact Page Styles */
 .contact {
     max-width: 800px;
     margin: 10vh auto;
-    padding: 2rem;
-    background-color: #333;
-    color: #fff;
-    border-radius: 10px;
+    padding: var(--section-padding);
+    background-color: var(--dark-bg-color);
+    color: var(--light-text-color);
+    border-radius: var(--border-radius);
     text-align: center;
+    flex: 1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .contact a {
-    color: #FFD700; /* Highlight email and links */
+    color: #FFD700;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .contact a:hover {
     text-decoration: underline;
+    color: #FFC107;
 }
 
 .contact-links {
@@ -231,105 +420,226 @@ header {
     height: 40px;
     margin: 0 10px;
     transition: transform 0.3s ease;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .contact-links a img:hover {
     transform: scale(1.2);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Make main content area flex grow to push footer down */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 var(--global-margin);
 }
 
 /* Footer */
 footer {
     text-align: center;
-    background-color: #333;
-    color: #fff;
+    background-color: var(--dark-bg-color);
+    color: var(--light-text-color);
     padding: 1rem;
     width: 100%;
     margin-top: auto;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero {
-        padding: 15vh 1rem;
-    }
-
-    #hero-text {
-        font-size: 3rem;
-    }
-
-    .about-me {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .about-me img {
-        max-width: 200px;
-    }
-
-    .job {
-        text-align: center;
-    }
-
-    .job.right-align {
-        text-align: center;
-    }
+footer a {
+    color: #FFD700;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.career-objectives, .it-skills, .education, .awards, .memberships {
-    max-width: 1200px;
-    margin: 4rem auto;
-    padding: 2rem;
-    background-color: #FFFAF1;
-    border-radius: 15px;
-    color: #333;
-}
-    
-.career-objectives h2, .it-skills h2, .education h2, .awards h2, .memberships h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-    
-.it-skills ul, .awards ul, .memberships ul {
-    list-style-type: disc;
-    padding-left: 2rem;
-}
-
-/* Carousel container with a thick black border and curved corners */
-#infoCarousel {
-    border: 5px solid #000;
-    border-radius: 15px;
-    overflow: hidden;
-}
-  
-/* Customize Carousel Arrows to be black */
-.carousel-control-next-icon,
-.carousel-control-prev-icon {
-    background-image: url("../assets/icons/arrow.png") !important;
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 50px;  /* You can adjust the size as needed */
-    height: 50px;
-    background-color: transparent;
-}
-  
-.carousel-control-prev-icon {
-    transform: none;
-}
-
-/* Flip the next arrow so it points right */
-.carousel-control-next-icon {
-    transform: scaleX(-1);
-}
-
-.carousel-content {
-    max-width: 800px;  /* Adjust this value as needed */
-    margin: 0 auto;    /* Centers the content horizontally */
-    text-align: center;
+footer a:hover {
+    color: #FFC107;
+    text-decoration: underline;
 }
 
 /* Projects Page Section */
 .projects-section {
-    max-width: 1200px;
+    max-width: var(--content-max-width);
     margin: 10vh auto;
-    padding: 2rem;
+    flex: 1;
+    padding: var(--section-padding) var(--global-margin);
+}
+
+.projects-section .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.projects-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.projects-section .card-img-top {
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.projects-section .ratio {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.projects-section .card-title {
+    color: #0047ab;
+    font-weight: bold;
+}
+
+.projects-section .card-text {
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    :root {
+        --global-margin: 1.5rem;
+    }
+    
+    #hero-text {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    :root {
+        --global-margin: 1.25rem;
+    }
+    
+    #hero-text {
+        font-size: 2.8rem;
+    }
+    
+    .about-me {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --global-margin: 1rem;
+    }
+    
+    body {
+        padding-top: 4rem;
+    }
+    
+    header {
+        padding: 0.8rem 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+    
+    #hero-text {
+        font-size: 2.4rem;
+    }
+    
+    /* Adjust social icons for mobile */
+    .social-icons-wrapper {
+        left: 60px;
+    }
+    
+    .logo-container:hover .social-icons-wrapper {
+        width: 150px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .about-me {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .about-me img {
+        max-width: 200px;
+    }
+    
+    .about-text .intro-statement {
+        font-size: 2rem;
+    }
+    
+    /* On mobile, allow carousel to be dynamic */
+    .carousel-section {
+        width: calc(100% - 2 * var(--global-margin));
+    }
+    
+    .job.left-align, .job.right-align {
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .job.right-align ul {
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .gradient-logo {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 1rem;
+    }
+    
+    #hero-text {
+        font-size: 2rem;
+    }
+    
+    .resume-link {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .contact-links a img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    /* Further adjust social icons for small screens */
+    .social-icons-wrapper {
+        left: 50px;
+        gap: 10px;
+    }
+    
+    .logo-container:hover .social-icons-wrapper {
+        width: 130px;
+    }
+    
+    .social-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .social-icon img {
+        width: 16px;
+        height: 16px;
+    }
 }

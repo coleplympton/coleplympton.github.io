@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cole Plympton - IT Specialist and Florida State University student specializing in IT support and system optimization">
     <title>Cole Plympton | Resume</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <!-- Navigation Bar -->
     <header class="sticky-header">
         <div class="logo-container">
-            <div class="gradient-logo"></div>
+            <div class="gradient-logo" role="img" aria-label="Cole Plympton Logo"></div>
+            <div class="social-icons-wrapper">
+                <a href="https://www.linkedin.com/in/cole-plympton/" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="social-icon">
+                    <img src="assets/icons/linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://bitbucket.org/cplis4930/workspace/repositories/" target="_blank" rel="noopener" aria-label="Bitbucket Repositories" class="social-icon">
+                    <img src="assets/icons/bitbucket.png" alt="Bitbucket">
+                </a>
+                <a href="https://github.com/cole-plympton" target="_blank" rel="noopener" aria-label="GitHub Profile" class="social-icon">
+                    <img src="assets/icons/github.png" alt="GitHub">
+                </a>
+            </div>
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html">Resume</a></li>
+                <li><a href="index.html" aria-current="page">Resume</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -24,15 +37,17 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1 id="hero-text"></h1>
-        <div id="resume-container" class="resume-container">
-            <a href="assets/resume.pdf" class="resume-link" target="_blank">Get My Resume</a>
+        <div class="hero-content">
+            <h1 id="hero-text"></h1>
+            <div id="resume-container" class="resume-container">
+                <a href="assets/resume.pdf" class="resume-link" target="_blank" rel="noopener">Get My Resume</a>
+            </div>
         </div>
     </section>
 
     <!-- About Me Section -->
     <section id="about-me" class="about-me">
-        <img src="assets/images/headshot.jpg" alt="Cole Plympton">
+        <img src="assets/images/headshot.jpg" alt="Cole Plympton" loading="lazy">
         <div class="about-text">
             <h2 class="intro-statement">A senior Information Technology student at Florida State University, graduating in May 2025.</h2>
             <p>
@@ -47,7 +62,7 @@
         </div>
     </section>
 
-    <section id="info-carousel" class="carousel-section my-5">
+    <section id="info-carousel" class="carousel-section">
         <div id="infoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
           <div class="carousel-inner">
             <!-- Slide 1: Career Objectives -->
@@ -70,7 +85,7 @@
                 <h2>Educational Experience</h2>
                 <p>Florida State University<br>
                 Bachelor of Science in Information Technology<br>
-                Graduating May 2025<br>
+                Graduating May 2025</p>
               </div>
             </div>
           </div>
@@ -114,7 +129,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>To see all my projects, go to the <a href="#" class="playground-link">Projects</a></p>
+        <p>To see all my projects, go to the <a href="projects.html" class="playground-link">Projects</a> page</p>
     </footer>
 
     <script src="js/script.js"></script>
