@@ -111,23 +111,29 @@
               <img src="assets/images/ai-data-analysis.jpg" class="full-width-img" alt="Data Analysis Project" loading="lazy">
             </div>
             <div class="card-body">
-              <h5 class="card-title">Data Analysis and Visualization</h5>
+              <h5 class="card-title">Text Analysis, Classification, and Prediction</h5>
               <p class="card-text">
                 <strong>Course:</strong> LIS4930 A.I Applications
               </p>
               <p class="card-text">
-                <strong>Description:</strong> A comprehensive data analysis project that involved getting, cleaning, preparing, analyzing, and visualizing datasets. I worked with various data manipulation techniques and created visual representations to communicate insights effectively.
+                <strong>Description:</strong> A comprehensive data analysis project that involved three major components:
               </p>
+              <ul>
+                <li><strong>Text Analysis:</strong> Used NLTK for tokenization, POS tagging, and word frequency analysis of product reviews, extracting meaningful insights from unstructured text.</li>
+                <li><strong>Sentiment Analysis:</strong> Applied VADER sentiment analyzer to quantify the emotional tone of guitar product reviews, calculating compound scores to determine overall customer satisfaction.</li>
+                <li><strong>Email Classification:</strong> Built a Naive Bayes classifier to distinguish between spam and non-spam emails with 94% accuracy, including detailed performance metrics.</li>
+              </ul>
               <p class="card-text">
-                <strong>Skills Applied:</strong> Data cleaning, statistical analysis, Python programming with pandas and matplotlib, data visualization techniques.
+                <strong>Skills Applied:</strong> Natural Language Processing (NLP), data preprocessing, statistical analysis, machine learning classification, Python programming with pandas, NLTK, and scikit-learn.
               </p>
               <a href="https://github.com/coleplympton/lis4930/blob/master/p1/README.md" target="_blank" class="btn btn-primary mt-2">View on GitHub</a>
             </div>
             <div class="card-footer bg-transparent border-0">
               <span class="badge bg-primary">Python</span>
-              <span class="badge bg-success">Data Analysis</span>
-              <span class="badge bg-info">Visualization</span>
-              <span class="badge bg-warning text-dark">Jupyter Notebook</span>
+              <span class="badge bg-success">NLP</span>
+              <span class="badge bg-info">Machine Learning</span>
+              <span class="badge bg-warning text-dark">NLTK</span>
+              <span class="badge bg-secondary">Sentiment Analysis</span>
             </div>
           </div>
         </div>
@@ -144,10 +150,20 @@
                 <strong>Course:</strong> LIS4930 A.I Applications
               </p>
               <p class="card-text">
-                <strong>Description:</strong> Developed a convolutional neural network (CNN) to classify images. The project involved exploring deep learning concepts, implementing a neural network architecture, and training the model to accurately identify different categories of images.
+                <strong>Description:</strong> Built a convolutional neural network (CNN) from scratch using TensorFlow and Keras to classify images from the CIFAR-10 dataset into 10 categories (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck).
               </p>
               <p class="card-text">
-                <strong>Skills Applied:</strong> Deep learning, neural networks, TensorFlow/Keras, image processing, model training and evaluation.
+                <strong>Technical Details:</strong>
+              </p>
+              <ul>
+                <li>Implemented a multi-layer CNN architecture with convolutional layers, max pooling, dropout for regularization, and dense layers</li>
+                <li>Processed and normalized 50,000 training images and 10,000 testing images (32x32 pixels, RGB)</li>
+                <li>Configured Stochastic Gradient Descent optimizer with momentum for efficient model training</li>
+                <li>Achieved significant accuracy improvement through multiple training epochs</li>
+                <li>Deployed the model to classify new images through custom prediction functions</li>
+              </ul>
+              <p class="card-text">
+                <strong>Skills Applied:</strong> Deep learning, neural networks, TensorFlow/Keras, image processing, model architecture design, hyperparameter tuning.
               </p>
               <a href="https://github.com/coleplympton/lis4930/blob/master/p2/README.md" target="_blank" class="btn btn-primary mt-2">View on GitHub</a>
             </div>
@@ -156,6 +172,7 @@
               <span class="badge bg-success">Deep Learning</span>
               <span class="badge bg-info">TensorFlow</span>
               <span class="badge bg-warning text-dark">CNN</span>
+              <span class="badge bg-secondary">Keras</span>
             </div>
           </div>
         </div>
