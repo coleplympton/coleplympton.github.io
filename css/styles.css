@@ -317,8 +317,14 @@ header {
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
 }
   
+.carousel-section:hover .carousel {
+    animation-play-state: paused;
+}
+
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
     background-image: url("../assets/icons/arrow.png") !important;
@@ -345,8 +351,55 @@ header {
 }
 
 .carousel-content h2 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--text-color);
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.carousel-content h2::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background: var(--accent-gradient);
+    bottom: 0;
+    left: 20%;
+}
+
+/* Skills Rating System */
+.skills-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.skill-item {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.skill-name {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.skill-bar {
+    height: 16px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.skill-level {
+    height: 100%;
+    background: var(--accent-gradient);
+    border-radius: 10px;
+    transition: width 1.5s ease-in-out;
 }
 
 /* Experience Section */
@@ -377,36 +430,293 @@ header {
 .job {
     margin-bottom: 3rem;
     position: relative;
+    padding: 1.5rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .job.left-align {
     text-align: left;
     padding-left: 0;
-    padding-right: 5%; 
+    padding-right: 5%;
+    border-left: 4px solid #0047ab;
 }
 
 .job.right-align {
     text-align: right;
     padding-right: 0;
     padding-left: 5%;
+    border-right: 4px solid #20B2AA;
 }
 
 .job h3 {
     color: #0047ab;
+    font-weight: bold;
+}
+
+.projects-section .card-text {
+    margin-bottom: 1rem;
+}
+
+.projects-section .badge {
+    margin-right: 5px;
+    font-weight: normal;
+    padding: 6px 10px;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+/* GitHub button styling */
+.projects-section .btn-primary {
+    background: var(--accent-gradient);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.projects-section .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    :root {
+        --global-margin: 1.5rem;
+    }
+    
+    #hero-text {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    :root {
+        --global-margin: 1.25rem;
+    }
+    
+    #hero-text {
+        font-size: 2.8rem;
+    }
+    
+    .about-me {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --global-margin: 1rem;
+    }
+    
+    body {
+        padding-top: 4rem;
+    }
+    
+    header {
+        padding: 0.8rem 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+    
+    #hero-text {
+        font-size: 2.4rem;
+    }
+    
+    /* Adjust social icons for mobile */
+    .social-icons-wrapper {
+        left: 60px;
+    }
+    
+    .logo-container:hover .social-icons-wrapper {
+        width: 150px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .about-me {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .about-me img {
+        max-width: 200px;
+    }
+    
+    .about-text .intro-statement {
+        font-size: 2rem;
+    }
+    
+    /* On mobile, allow carousel to be dynamic */
+    .carousel-section {
+        width: calc(100% - 2 * var(--global-margin));
+    }
+    
+    .job.left-align, .job.right-align {
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: 3px solid #0047ab;
+    }
+    
+    .job.right-align .job-highlight,
+    .job.left-align .job-highlight {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .highlight-icon {
+        margin-bottom: 10px;
+    }
+    
+    .job-card {
+        padding: 1rem;
+    }
+    
+    .projects-section .card-img-top {
+        height: 200px;
+    }
+    
+    .project-image-container {
+        height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .gradient-logo {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 1rem;
+    }
+    
+    #hero-text {
+        font-size: 2rem;
+    }
+    
+    .resume-link {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .contact-links a img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    /* Further adjust social icons for small screens */
+    .social-icons-wrapper {
+        left: 50px;
+        gap: 10px;
+    }
+    
+    .logo-container:hover .social-icons-wrapper {
+        width: 130px;
+    }
+    
+    .social-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .social-icon img {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .projects-section .card-img-top {
+        height: 180px;
+    }
+    
+    .project-image-container {
+        height: 180px;
+    }
+    
+    .section-header {
+        font-size: 1.5rem;
+    }
+}
     margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 
-.job ul {
-    list-style-type: disc;
-    margin-top: 1rem;
+.job-highlight {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    position: relative;
 }
 
-.job.right-align ul {
-    display: inline-block;
-    text-align: left;
-    list-style-position: inside;
-    padding-left: 0;
-    margin-right: 0;
+.job.right-align .job-highlight {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.highlight-icon {
+    font-size: 1.2rem;
+    margin: 0 10px;
+    background-color: rgba(0, 71, 171, 0.1);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.job-highlight p {
+    margin: 0;
+    flex: 1;
+}
+
+/* Special highlight for international experience */
+.special-highlight {
+    margin-top: 4rem;
+}
+
+.job-card {
+    background: linear-gradient(135deg, rgba(0, 71, 171, 0.05), rgba(32, 178, 170, 0.05));
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 71, 171, 0.2);
+}
+
+.special-highlight h3 {
+    color: #0047ab;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.special-highlight p {
+    margin-bottom: 1.5rem;
 }
 
 /* Contact Page Styles */
@@ -613,196 +923,3 @@ footer a:hover {
 
 .projects-section .card-title {
     color: #0047ab;
-    font-weight: bold;
-}
-
-.projects-section .card-text {
-    margin-bottom: 1rem;
-}
-
-.projects-section .badge {
-    margin-right: 5px;
-    font-weight: normal;
-    padding: 6px 10px;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 0.5px;
-}
-
-/* GitHub button styling */
-.projects-section .btn-primary {
-    background: var(--accent-gradient);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.projects-section .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    :root {
-        --global-margin: 1.5rem;
-    }
-    
-    #hero-text {
-        font-size: 3rem;
-    }
-}
-
-@media (max-width: 992px) {
-    :root {
-        --global-margin: 1.25rem;
-    }
-    
-    #hero-text {
-        font-size: 2.8rem;
-    }
-    
-    .about-me {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --global-margin: 1rem;
-    }
-    
-    body {
-        padding-top: 4rem;
-    }
-    
-    header {
-        padding: 0.8rem 1rem;
-    }
-    
-    .nav-links a {
-        font-size: 1.2rem;
-    }
-    
-    #hero-text {
-        font-size: 2.4rem;
-    }
-    
-    /* Adjust social icons for mobile */
-    .social-icons-wrapper {
-        left: 60px;
-    }
-    
-    .logo-container:hover .social-icons-wrapper {
-        width: 150px;
-    }
-    
-    .social-icon {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .social-icon img {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .about-me {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem;
-    }
-    
-    .about-me img {
-        max-width: 200px;
-    }
-    
-    .about-text .intro-statement {
-        font-size: 2rem;
-    }
-    
-    /* On mobile, allow carousel to be dynamic */
-    .carousel-section {
-        width: calc(100% - 2 * var(--global-margin));
-    }
-    
-    .job.left-align, .job.right-align {
-        text-align: center;
-        padding-left: 0;
-        padding-right: 0;
-    }
-    
-    .job.right-align ul {
-        padding-left: 1rem;
-    }
-    
-    .projects-section .card-img-top {
-        height: 200px;
-    }
-    
-    .project-image-container {
-        height: 200px;
-    }
-}
-
-@media (max-width: 576px) {
-    .gradient-logo {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .nav-links {
-        gap: 1rem;
-    }
-    
-    .nav-links a {
-        font-size: 1rem;
-    }
-    
-    #hero-text {
-        font-size: 2rem;
-    }
-    
-    .resume-link {
-        font-size: 1rem;
-        padding: 0.8rem 1.2rem;
-    }
-    
-    .contact-links a img {
-        width: 35px;
-        height: 35px;
-    }
-    
-    /* Further adjust social icons for small screens */
-    .social-icons-wrapper {
-        left: 50px;
-        gap: 10px;
-    }
-    
-    .logo-container:hover .social-icons-wrapper {
-        width: 130px;
-    }
-    
-    .social-icon {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .social-icon img {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .projects-section .card-img-top {
-        height: 180px;
-    }
-    
-    .project-image-container {
-        height: 180px;
-    }
-    
-    .section-header {
-        font-size: 1.5rem;
-    }
-}
