@@ -921,5 +921,231 @@ footer a:hover {
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.projects-section .card-title {
+./* Add these styles to your styles.css file */
+
+/* Improved project image container */
+.project-image-container {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+}
+
+/* Full width image that maintains aspect ratio */
+.full-width-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #f8f8f8;
+}
+
+/* Improved card image top styling */
+.projects-section .card-img-top {
+    aspect-ratio: 16/9;
+    object-fit: contain;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Project title styles */
+.projects-section .project-category-title {
+    font-weight: 700;
     color: #0047ab;
+    margin-bottom: 1.5rem;
+}
+
+/* Section header improvements */
+.section-header {
+    color: #0047ab;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* Card title bolding */
+.projects-section .card-title {
+    font-weight: 700;
+    color: #0047ab;
+    margin-bottom: 1rem;
+}
+
+/* Remove any right margin from the last badge in each row */
+.projects-section .badge:last-child {
+    margin-right: 0;
+}
+
+/* Ensure good spacing in mobile view */
+@media (max-width: 768px) {
+    .project-image-container, 
+    .projects-section .card-img-top {
+        aspect-ratio: 4/3; /* Slightly different ratio for mobile */
+    }
+}
+
+/* Add these styles to your styles.css file */
+
+/* Improved project image container */
+.project-image-container {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+}
+
+/* Larger image for the conference room tablet project */
+.conference-room-tablet {
+    aspect-ratio: 4/3;
+    padding: 0;
+}
+
+/* Full width image that maintains aspect ratio */
+.full-width-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #f8f8f8;
+}
+
+/* Conference tablet image styling - larger and more prominent */
+.conference-tablet-img {
+    width: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Improved card image top styling */
+.projects-section .card-img-top {
+    aspect-ratio: 16/9;
+    object-fit: contain;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Project title styles */
+.projects-section .project-category-title {
+    font-weight: 700;
+    color: #0047ab;
+    margin-bottom: 1.5rem;
+}
+
+/* Section header improvements */
+.section-header {
+    color: #0047ab;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* Card title bolding */
+.projects-section .card-title {
+    font-weight: 700;
+    color: #0047ab;
+    margin-bottom: 1rem;
+}
+
+/* Remove any right margin from the last badge in each row */
+.projects-section .badge:last-child {
+    margin-right: 0;
+}
+
+/* Ensure good spacing in mobile view */
+@media (max-width: 768px) {
+    .project-image-container, 
+    .projects-section .card-img-top {
+        aspect-ratio: 4/3; /* Slightly different ratio for mobile */
+    }
+}
+
+/* Add these styles to your styles.css file */
+
+/* Improved project image container */
+.project-image-container {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+}
+
+/* Larger container for the conference room tablet project */
+.conference-room-tablet {
+    aspect-ratio: auto;
+    height: 450px; /* Taller fixed height to show full image */
+    padding: 15px;
+}
+
+/* Full width image that maintains aspect ratio */
+.full-width-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #f8f8f8;
+}
+
+/* Conference tablet image styling */
+.conference-tablet-img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Improved card image top styling */
+.projects-section .card-img-top {
+    aspect-ratio: 16/9;
+    object-fit: contain;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Project title styles */
+.projects-section .project-category-title {
+    font-weight: 700;
+    color: #0047ab;
+    margin-bottom: 1.5rem;
+}
+
+/* Section header improvements */
+.section-header {
+    color: #0047ab;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* Card title bolding */
+.projects-section .card-title {
+    font-weight: 700;
+    color: #0047ab;
+    margin-bottom: 1rem;
+}
+
+/* Remove any right margin from the last badge in each row */
+.projects-section .badge:last-child {
+    margin-right: 0;
+}
+
+/* Ensure good spacing in mobile view */
+@media (max-width: 768px) {
+    .project-image-container:not(.conference-room-tablet) {
+        aspect-ratio: 4/3; /* Slightly different ratio for mobile */
+    }
+    
+    .conference-room-tablet {
+        height: 350px; /* Slightly shorter on mobile */
+    }
+}
