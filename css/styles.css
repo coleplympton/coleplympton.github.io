@@ -5,6 +5,7 @@
     --text-color: #333;
     --light-text-color: #FFFAF1;
     --accent-gradient: linear-gradient(90deg, #0047ab, #20B2AA, #FFC300);
+    --accent-color: #0047ab; /* Main accent color */
     --border-radius: 15px;
     --section-padding: 2rem;
     --content-max-width: 1200px;
@@ -417,7 +418,7 @@ header {
     align-self: flex-end;
 }
 
-/* Experience Section */
+/* Updated Experience Section Styles */
 .experience {
     max-width: calc(var(--content-max-width) - 2 * var(--global-margin));
     margin: 4rem auto;
@@ -425,76 +426,160 @@ header {
     text-align: center;
 }
 
-.experience h2 {
-    margin-bottom: 2rem;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-}
-
-.experience h2::after {
-    content: '';
-    position: absolute;
-    width: 50%;
-    height: 3px;
-    background: var(--accent-gradient);
-    bottom: 0;
-    left: 25%;
-}
-
-/* Job Cards */
-.job {
+.experience-header {
     margin-bottom: 3rem;
     position: relative;
-    padding: 1.5rem;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    padding-bottom: 0.8rem;
+    font-size: 2.2rem;
+    color: var(--accent-color);
+    text-align: center;
+    width: 100%;
 }
 
-.job:hover {
+.experience-header::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 4px;
+    background: var(--accent-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background: var(--accent-color);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.experience-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 45%;
+    border-top: 3px solid var(--accent-color);
+}
+
+.experience-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .job.left-align {
-    text-align: left;
-    padding-left: 0;
-    padding-right: 5%;
-    border-left: 4px solid #0047ab;
+    float: left;
+    text-align: right;
+    clear: both;
 }
 
 .job.right-align {
-    text-align: right;
-    padding-right: 0;
-    padding-left: 5%;
-    border-right: 4px solid #20B2AA;
+    float: right;
+    text-align: left;
+    clear: both;
 }
 
-.job h3 {
-    color: #0047ab;
+.experience-date {
+    position: absolute;
+    top: -15px;
+    width: auto;
+    z-index: 1;
+}
+
+.job.left-align .experience-date {
+    right: -75px;
+}
+
+.job.right-align .experience-date {
+    left: -75px;
+}
+
+.date-badge {
+    background: var(--accent-color);
+    color: var(--light-text-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+.company-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+}
+
+.job-title {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.responsibility-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.job.left-align .responsibility-list {
+    text-align: right;
+}
+
+.job.right-align .responsibility-list {
+    text-align: left;
+}
+
+.responsibility-list li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.5;
+}
+
+.job.left-align .responsibility-list li {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.responsibility-list li::before {
+    content: "•";
+    position: absolute;
+    color: var(--accent-color);
     font-weight: bold;
 }
 
-/* Job Card Styling */
-.job-card {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease-in-out;
+.job.left-align .responsibility-list li::before {
+    right: 0;
 }
 
-.job-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.job.right-align .responsibility-list li::before {
+    left: 0;
 }
 
-.job-description {
-    line-height: 1.6;
-    margin-top: 15px;
-    color: #555;
+/* Clear fix for floated elements */
+.timeline-container::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* Projects Section */
@@ -716,169 +801,8 @@ footer a:hover {
     #hero-text {
         font-size: 3rem;
     }
-}
-
-@media (max-width: 992px) {
-    :root {
-        --global-margin: 1.25rem;
-    }
     
-    #hero-text {
-        font-size: 2.8rem;
-    }
-    
-    .about-me {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --global-margin: 1rem;
-    }
-    
-    body {
-        padding-top: 4rem;
-    }
-    
-    header {
-        padding: 0.8rem 1rem;
-    }
-    
-    .nav-links a {
-        font-size: 1.2rem;
-    }
-    
-    /* Updated hero section for mobile */
-    .hero {
-        padding-top: 25vh; /* Increased top padding for mobile */
-        min-height: 80vh; /* Reduced height on mobile */
-    }
-    
-    #hero-text {
-        font-size: 2.2rem; /* Smaller text on mobile */
-    }
-    
-    /* Make sure text wraps properly on mobile */
-    .typed-line {
-        white-space: normal;
-        word-wrap: break-word;
-    }
-    
-    /* Resume button appears earlier on mobile */
-    .resume-container {
-        margin-top: 3vh;
-    }
-    
-    /* Adjust social icons for mobile */
-    .social-icons-wrapper {
-        left: 60px;
-    }
-    
-    .logo-container:hover .social-icons-wrapper {
-        width: 150px;
-    }
-    
-    .social-icon {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .social-icon img {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .about-me {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem;
-    }
-    
-    .about-me img {
-        max-width: 200px;
-    }
-    
-    .about-text .intro-statement {
-        font-size: 2rem;
-    }
-    
-    /* On mobile, allow carousel to be dynamic */
-    .carousel-section {
-        width: calc(100% - 2 * var(--global-margin));
-    }
-    
-    .job.left-align, .job.right-align {
-        text-align: center;
-        padding-left: 0;
-        padding-right: 0;
-        border-left: none;
-        border-right: none;
-        border-bottom: 3px solid #0047ab;
-    }
-    
-    .project-image-container:not(.conference-room-tablet) {
-        aspect-ratio: 4/3; /* Slightly different ratio for mobile */
-    }
-    
-    .conference-room-tablet {
-        height: 350px; /* Slightly shorter on mobile */
-    }
-    
-    .contact-links a img {
-        width: 35px;
-        height: 35px;
-    }
-}
-
-@media (max-width: 576px) {
-    .gradient-logo {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .nav-links {
-        gap: 1rem;
-    }
-    
-    .nav-links a {
-        font-size: 1rem;
-    }
-    
-    #hero-text {
-        font-size: 1.8rem; /* Even smaller text on small mobile screens */
-    }
-    
-    .hero {
-        padding-top: 20vh; /* Adjusted for smaller screens */
-    }
-    
-    .resume-link {
-        font-size: 1rem;
-        padding: 0.8rem 1.2rem;
-    }
-    
-    /* Further adjust social icons for small screens */
-    .social-icons-wrapper {
-        left: 50px;
-        gap: 10px;
-    }
-    
-    .logo-container:hover .social-icons-wrapper {
-        width: 130px;
-    }
-    
-    .social-icon {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .social-icon img {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .section-header {
-        font-size: 1.5rem;
+    .experience-card {
+        width: 48%;
     }
 }
