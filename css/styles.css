@@ -8,7 +8,7 @@
     --border-radius: 15px;
     --section-padding: 2rem;
     --content-max-width: 1200px;
-    --global-margin: 2rem; /* Standard margin for all sections */
+    --global-margin: 2rem;
 }
 
 html {
@@ -74,7 +74,7 @@ header {
     font-size: 1.5rem;
     font-weight: bold;
     position: relative;
-    padding-bottom: 3px; /* Moved closer to the text */
+    padding-bottom: 3px;
     transition: color 0.3s ease;
 }
 
@@ -82,7 +82,7 @@ header {
     color: #FFC300;
 }
 
-/* New progress bar styling */
+/* Progress bar styling */
 .nav-links a.active {
     position: relative;
 }
@@ -94,7 +94,7 @@ header {
     left: 0;
     width: 100%;
     height: 3px;
-    background: #FFFFFF; /* White background */
+    background: #FFFFFF;
     transition: background 0.3s ease-in-out;
 }
 
@@ -125,7 +125,7 @@ header {
     animation: gradient-shift 4s ease infinite;
     position: relative;
     transition: transform 0.3s ease;
-    cursor: pointer; /* Make it clear this is clickable */
+    cursor: pointer;
     z-index: 2;
 }
 
@@ -137,7 +137,7 @@ header {
 /* Social icons wrapper */
 .social-icons-wrapper {
     position: absolute;
-    left: 70px; /* Position to the right of the logo */
+    left: 70px;
     display: flex;
     gap: 15px;
     overflow: hidden;
@@ -148,7 +148,7 @@ header {
 }
 
 .logo-container:hover .social-icons-wrapper {
-    width: 170px; /* Width to accommodate all icons */
+    width: 170px;
 }
 
 .social-icon {
@@ -198,16 +198,17 @@ header {
     100% { background-position: 0% 50%; }
 }
 
-/* Hero Section */
+/* Hero Section - Updated for better positioning and mobile compatibility */
 .hero {
     width: 100%;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
+    min-height: 90vh; /* Reduced from 100vh to fit better on screen */
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Changed from center to start higher on the page */
     justify-content: center;
+    padding-top: 15vh; /* Added padding to move content higher up */
 }
 
 .hero-content {
@@ -224,21 +225,24 @@ header {
     line-height: 1.2;
     text-align: left;
     word-wrap: break-word;
+    overflow-wrap: break-word; /* Added to help with text wrapping on mobile */
+    hyphens: auto; /* Added to help with text wrapping on mobile */
 }
 
-/* New styles for typed lines */
+/* Typed lines */
 .typed-line {
     display: block;
     min-height: 1.2em;
-    white-space: nowrap;
+    white-space: normal; /* Changed from nowrap to allow wrapping on mobile */
+    margin-bottom: 0.2em; /* Added spacing between lines */
 }
 
 .resume-container {
-    margin-top: 10vh;
+    margin-top: 5vh; /* Reduced from 10vh for earlier appearance */
     display: flex;
     justify-content: flex-start;
     opacity: 0;
-    animation: fadeIn 1s forwards 4s;
+    animation: fadeIn 0.8s forwards 2.8s; /* Adjusted timing to appear earlier */
 }
 
 .resume-link {
@@ -378,6 +382,9 @@ header {
 .skill-item {
     margin-bottom: 1.2rem;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .skill-name {
@@ -389,10 +396,12 @@ header {
 
 .skill-bar {
     height: 16px;
+    width: 100%;
     background-color: #e9ecef;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 5px;
 }
 
 .skill-level {
@@ -400,6 +409,12 @@ header {
     background: var(--accent-gradient);
     border-radius: 10px;
     transition: width 1.5s ease-in-out;
+}
+
+.skill-proficiency {
+    font-size: 0.8rem;
+    color: #6c757d;
+    align-self: flex-end;
 }
 
 /* Experience Section */
@@ -427,6 +442,7 @@ header {
     left: 25%;
 }
 
+/* Job Cards */
 .job {
     margin-bottom: 3rem;
     position: relative;
@@ -459,6 +475,84 @@ header {
     font-weight: bold;
 }
 
+/* Job Card Styling */
+.job-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.job-description {
+    line-height: 1.6;
+    margin-top: 15px;
+    color: #555;
+}
+
+/* Projects Section */
+.projects-section {
+    max-width: var(--content-max-width);
+    margin: 10vh auto;
+    flex: 1;
+    padding: var(--section-padding) var(--global-margin);
+}
+
+/* Section headers for project categories */
+.section-header {
+    color: #0047ab;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--accent-gradient);
+}
+
+/* Project title styles */
+.projects-section .project-category-title {
+    font-weight: 700;
+    color: #0047ab;
+    margin-bottom: 1.5rem;
+}
+
+/* Card styling */
+.projects-section .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.projects-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.projects-section .card-title {
+    font-weight: 700;
+    color: #0047ab;
+    margin-bottom: 1rem;
+}
+
 .projects-section .card-text {
     margin-bottom: 1rem;
 }
@@ -470,6 +564,10 @@ header {
     text-transform: uppercase;
     font-size: 0.7rem;
     letter-spacing: 0.5px;
+}
+
+.projects-section .badge:last-child {
+    margin-right: 0;
 }
 
 /* GitHub button styling */
@@ -486,242 +584,50 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-    :root {
-        --global-margin: 1.5rem;
-    }
-    
-    #hero-text {
-        font-size: 3rem;
-    }
-}
-
-@media (max-width: 992px) {
-    :root {
-        --global-margin: 1.25rem;
-    }
-    
-    #hero-text {
-        font-size: 2.8rem;
-    }
-    
-    .about-me {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --global-margin: 1rem;
-    }
-    
-    body {
-        padding-top: 4rem;
-    }
-    
-    header {
-        padding: 0.8rem 1rem;
-    }
-    
-    .nav-links a {
-        font-size: 1.2rem;
-    }
-    
-    #hero-text {
-        font-size: 2.4rem;
-    }
-    
-    /* Adjust social icons for mobile */
-    .social-icons-wrapper {
-        left: 60px;
-    }
-    
-    .logo-container:hover .social-icons-wrapper {
-        width: 150px;
-    }
-    
-    .social-icon {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .social-icon img {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .about-me {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem;
-    }
-    
-    .about-me img {
-        max-width: 200px;
-    }
-    
-    .about-text .intro-statement {
-        font-size: 2rem;
-    }
-    
-    /* On mobile, allow carousel to be dynamic */
-    .carousel-section {
-        width: calc(100% - 2 * var(--global-margin));
-    }
-    
-    .job.left-align, .job.right-align {
-        text-align: center;
-        padding-left: 0;
-        padding-right: 0;
-        border-left: none;
-        border-right: none;
-        border-bottom: 3px solid #0047ab;
-    }
-    
-    .job.right-align .job-highlight,
-    .job.left-align .job-highlight {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .highlight-icon {
-        margin-bottom: 10px;
-    }
-    
-    .job-card {
-        padding: 1rem;
-    }
-    
-    .projects-section .card-img-top {
-        height: 200px;
-    }
-    
-    .project-image-container {
-        height: 200px;
-    }
-}
-
-@media (max-width: 576px) {
-    .gradient-logo {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .nav-links {
-        gap: 1rem;
-    }
-    
-    .nav-links a {
-        font-size: 1rem;
-    }
-    
-    #hero-text {
-        font-size: 2rem;
-    }
-    
-    .resume-link {
-        font-size: 1rem;
-        padding: 0.8rem 1.2rem;
-    }
-    
-    .contact-links a img {
-        width: 35px;
-        height: 35px;
-    }
-    
-    /* Further adjust social icons for small screens */
-    .social-icons-wrapper {
-        left: 50px;
-        gap: 10px;
-    }
-    
-    .logo-container:hover .social-icons-wrapper {
-        width: 130px;
-    }
-    
-    .social-icon {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .social-icon img {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .projects-section .card-img-top {
-        height: 180px;
-    }
-    
-    .project-image-container {
-        height: 180px;
-    }
-    
-    .section-header {
-        font-size: 1.5rem;
-    }
-}
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-}
-
-.job-highlight {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 0.75rem;
-    position: relative;
-}
-
-.job.right-align .job-highlight {
-    flex-direction: row-reverse;
-    text-align: right;
-}
-
-.highlight-icon {
-    font-size: 1.2rem;
-    margin: 0 10px;
-    background-color: rgba(0, 71, 171, 0.1);
-    width: 30px;
-    height: 30px;
+/* Project image container */
+.project-image-container {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    background-color: #f8f8f8;
 }
 
-.job-highlight p {
-    margin: 0;
-    flex: 1;
+/* Larger container for the conference room tablet project */
+.conference-room-tablet {
+    aspect-ratio: auto;
+    height: 450px;
+    padding: 15px;
 }
 
-/* Special highlight for international experience */
-.special-highlight {
-    margin-top: 4rem;
+/* Full width image that maintains aspect ratio */
+.full-width-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #f8f8f8;
 }
 
-.job-card {
-    background: linear-gradient(135deg, rgba(0, 71, 171, 0.05), rgba(32, 178, 170, 0.05));
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 71, 171, 0.2);
+/* Conference tablet image styling */
+.conference-tablet-img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
 }
 
-.special-highlight h3 {
-    color: #0047ab;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.special-highlight p {
-    margin-bottom: 1.5rem;
+/* Card image top styling */
+.projects-section .card-img-top {
+    aspect-ratio: 16/9;
+    object-fit: contain;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Contact Page Styles */
 .contact {
-    max-width: 600px; /* Reduced from 800px */
+    max-width: 600px;
     margin: 10vh auto;
     padding: 2rem;
     background-color: var(--dark-bg-color);
@@ -774,61 +680,6 @@ header {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Contact form addition */
-.contact-form {
-    margin-top: 2rem;
-    text-align: left;
-}
-
-.contact-form .form-group {
-    margin-bottom: 1.5rem;
-}
-
-.contact-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--light-text-color);
-}
-
-.contact-form input, 
-.contact-form textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border-radius: 5px;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-.contact-form textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.contact-form button {
-    background: var(--accent-gradient);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.contact-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Make main content area flex grow to push footer down */
-main {
-    flex: 1;
-    width: 100%;
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding: 0 var(--global-margin);
-}
-
 /* Footer */
 footer {
     text-align: center;
@@ -851,296 +702,121 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Projects Page Section */
-.projects-section {
-    max-width: var(--content-max-width);
-    margin: 10vh auto;
-    flex: 1;
-    padding: var(--section-padding) var(--global-margin);
+/* Utility Classes */
+.hidden {
+    display: none;
 }
 
-/* Section headers for project categories */
-.section-header {
-    color: #0047ab;
-    text-align: center;
-    position: relative;
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-}
-
-.section-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: var(--accent-gradient);
-}
-
-/* Enhanced card styling */
-.projects-section .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.projects-section .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Fixed image display for the conference room tablet project */
-.project-image-container {
-    height: 250px;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.full-width-img {
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.projects-section .card-img-top {
-    height: 250px;
-    object-fit: cover;
-    object-position: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.projects-section .ratio {
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-./* Add these styles to your styles.css file */
-
-/* Improved project image container */
-.project-image-container {
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f8f8;
-}
-
-/* Full width image that maintains aspect ratio */
-.full-width-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background-color: #f8f8f8;
-}
-
-/* Improved card image top styling */
-.projects-section .card-img-top {
-    aspect-ratio: 16/9;
-    object-fit: contain;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Project title styles */
-.projects-section .project-category-title {
-    font-weight: 700;
-    color: #0047ab;
-    margin-bottom: 1.5rem;
-}
-
-/* Section header improvements */
-.section-header {
-    color: #0047ab;
-    text-align: center;
-    position: relative;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-/* Card title bolding */
-.projects-section .card-title {
-    font-weight: 700;
-    color: #0047ab;
-    margin-bottom: 1rem;
-}
-
-/* Remove any right margin from the last badge in each row */
-.projects-section .badge:last-child {
-    margin-right: 0;
-}
-
-/* Ensure good spacing in mobile view */
-@media (max-width: 768px) {
-    .project-image-container, 
-    .projects-section .card-img-top {
-        aspect-ratio: 4/3; /* Slightly different ratio for mobile */
+/* Responsive Design */
+@media (max-width: 1200px) {
+    :root {
+        --global-margin: 1.5rem;
+    }
+    
+    #hero-text {
+        font-size: 3rem;
     }
 }
 
-/* Add these styles to your styles.css file */
-
-/* Improved project image container */
-.project-image-container {
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f8f8;
-}
-
-/* Larger image for the conference room tablet project */
-.conference-room-tablet {
-    aspect-ratio: 4/3;
-    padding: 0;
-}
-
-/* Full width image that maintains aspect ratio */
-.full-width-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background-color: #f8f8f8;
-}
-
-/* Conference tablet image styling - larger and more prominent */
-.conference-tablet-img {
-    width: 100%;
-    max-height: none;
-    object-fit: cover;
-    object-position: center;
-}
-
-/* Improved card image top styling */
-.projects-section .card-img-top {
-    aspect-ratio: 16/9;
-    object-fit: contain;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Project title styles */
-.projects-section .project-category-title {
-    font-weight: 700;
-    color: #0047ab;
-    margin-bottom: 1.5rem;
-}
-
-/* Section header improvements */
-.section-header {
-    color: #0047ab;
-    text-align: center;
-    position: relative;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-/* Card title bolding */
-.projects-section .card-title {
-    font-weight: 700;
-    color: #0047ab;
-    margin-bottom: 1rem;
-}
-
-/* Remove any right margin from the last badge in each row */
-.projects-section .badge:last-child {
-    margin-right: 0;
-}
-
-/* Ensure good spacing in mobile view */
-@media (max-width: 768px) {
-    .project-image-container, 
-    .projects-section .card-img-top {
-        aspect-ratio: 4/3; /* Slightly different ratio for mobile */
+@media (max-width: 992px) {
+    :root {
+        --global-margin: 1.25rem;
+    }
+    
+    #hero-text {
+        font-size: 2.8rem;
+    }
+    
+    .about-me {
+        padding: 1.5rem;
     }
 }
 
-/* Add these styles to your styles.css file */
-
-/* Improved project image container */
-.project-image-container {
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f8f8;
-}
-
-/* Larger container for the conference room tablet project */
-.conference-room-tablet {
-    aspect-ratio: auto;
-    height: 450px; /* Taller fixed height to show full image */
-    padding: 15px;
-}
-
-/* Full width image that maintains aspect ratio */
-.full-width-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background-color: #f8f8f8;
-}
-
-/* Conference tablet image styling */
-.conference-tablet-img {
-    max-height: 100%;
-    width: auto;
-    object-fit: contain;
-}
-
-/* Improved card image top styling */
-.projects-section .card-img-top {
-    aspect-ratio: 16/9;
-    object-fit: contain;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Project title styles */
-.projects-section .project-category-title {
-    font-weight: 700;
-    color: #0047ab;
-    margin-bottom: 1.5rem;
-}
-
-/* Section header improvements */
-.section-header {
-    color: #0047ab;
-    text-align: center;
-    position: relative;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-/* Card title bolding */
-.projects-section .card-title {
-    font-weight: 700;
-    color: #0047ab;
-    margin-bottom: 1rem;
-}
-
-/* Remove any right margin from the last badge in each row */
-.projects-section .badge:last-child {
-    margin-right: 0;
-}
-
-/* Ensure good spacing in mobile view */
 @media (max-width: 768px) {
+    :root {
+        --global-margin: 1rem;
+    }
+    
+    body {
+        padding-top: 4rem;
+    }
+    
+    header {
+        padding: 0.8rem 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+    
+    /* Updated hero section for mobile */
+    .hero {
+        padding-top: 25vh; /* Increased top padding for mobile */
+        min-height: 80vh; /* Reduced height on mobile */
+    }
+    
+    #hero-text {
+        font-size: 2.2rem; /* Smaller text on mobile */
+    }
+    
+    /* Make sure text wraps properly on mobile */
+    .typed-line {
+        white-space: normal;
+        word-wrap: break-word;
+    }
+    
+    /* Resume button appears earlier on mobile */
+    .resume-container {
+        margin-top: 3vh;
+    }
+    
+    /* Adjust social icons for mobile */
+    .social-icons-wrapper {
+        left: 60px;
+    }
+    
+    .logo-container:hover .social-icons-wrapper {
+        width: 150px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .about-me {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .about-me img {
+        max-width: 200px;
+    }
+    
+    .about-text .intro-statement {
+        font-size: 2rem;
+    }
+    
+    /* On mobile, allow carousel to be dynamic */
+    .carousel-section {
+        width: calc(100% - 2 * var(--global-margin));
+    }
+    
+    .job.left-align, .job.right-align {
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: 3px solid #0047ab;
+    }
+    
     .project-image-container:not(.conference-room-tablet) {
         aspect-ratio: 4/3; /* Slightly different ratio for mobile */
     }
@@ -1148,60 +824,61 @@ footer a:hover {
     .conference-room-tablet {
         height: 350px; /* Slightly shorter on mobile */
     }
+    
+    .contact-links a img {
+        width: 35px;
+        height: 35px;
+    }
 }
 
-/* Updated Job Card Styling */
-.job-card {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease-in-out;
-}
-
-.job-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.job-description {
-    line-height: 1.6;
-    margin-top: 15px;
-    color: #555;
-}
-
-/* Updated Skill Bar Styling */
-.skill-item {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.skill-name {
-    font-weight: 600;
-    margin-bottom: 6px;
-}
-
-.skill-bar {
-    height: 10px;
-    width: 100%;
-    background-color: #e9ecef;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 5px;
-}
-
-.skill-level {
-    height: 100%;
-    background: linear-gradient(to right, #6c63ff, #3b82f6);
-    border-radius: 5px;
-}
-
-.skill-proficiency {
-    font-size: 0.8rem;
-    color: #6c757d;
-    align-self: flex-end;
+@media (max-width: 576px) {
+    .gradient-logo {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 1rem;
+    }
+    
+    #hero-text {
+        font-size: 1.8rem; /* Even smaller text on small mobile screens */
+    }
+    
+    .hero {
+        padding-top: 20vh; /* Adjusted for smaller screens */
+    }
+    
+    .resume-link {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+    
+    /* Further adjust social icons for small screens */
+    .social-icons-wrapper {
+        left: 50px;
+        gap: 10px;
+    }
+    
+    .logo-container:hover .social-icons-wrapper {
+        width: 130px;
+    }
+    
+    .social-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .social-icon img {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .section-header {
+        font-size: 1.5rem;
+    }
 }

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Hero text animation
     const lines = [
         "HI, I'M",
         "COLE PLYMPTON",
@@ -8,9 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const heroText = document.getElementById("hero-text");
     
-    // Pre-create the structure with empty divs for each line
     if (heroText) {
-        // Clear any existing content
+        // Clear any existing content and pre-create structure
         heroText.innerHTML = '';
         
         // Create a div for each line
@@ -20,42 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
             lineDiv.id = `line-${index}`;
             heroText.appendChild(lineDiv);
         });
+        
+        // Start typing animation with faster speeds
+        typeWriter(lines, 0, 0, 80, 80); // Reduced typing speed and line delay
     }
     
-    let lineIndex = 0;
-    let charIndex = 0;
-    const typingSpeed = 100;
-    const lineDelay = 100;
-
-    function typeWriter() {
-        if (lineIndex < lines.length) {
-            const line = lines[lineIndex];
-            const currentLineElement = document.getElementById(`line-${lineIndex}`);
-
-            if (charIndex < line.length) {
-                // Append the character to the current line
-                currentLineElement.textContent += line.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, typingSpeed);
-            } else {
-                lineIndex++;
-                charIndex = 0;
-                setTimeout(typeWriter, lineDelay);
-            }
-        } else {
-            // Show resume link after text animation finishes
-            const resumeContainer = document.getElementById("resume-container");
-            if (resumeContainer) {
-                resumeContainer.classList.remove("hidden");
-            }
-        }
-    }
-
-    // Only start typing animation if hero text element exists
-    if (heroText) {
-        typeWriter();
-    }
-
     // Make the gradient logo clickable to go to home page
     const gradientLogo = document.querySelector(".gradient-logo");
     if (gradientLogo) {
@@ -71,6 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.forEach(link => {
         if (link.getAttribute("href") === currentPath) {
             link.classList.add("active");
+            
+            // Add progress bar to active link
+            const progressBar = document.createElement('div');
+            progressBar.className = 'progress-bar';
+            link.appendChild(progressBar);
         } else {
             link.classList.remove("active");
         }
@@ -79,26 +53,67 @@ document.addEventListener("DOMContentLoaded", () => {
     // Scroll progress indicator
     window.addEventListener('scroll', updateScrollProgress);
     
-    function updateScrollProgress() {
-        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPosition = window.scrollY;
-        const scrollPercentage = (scrollPosition / windowHeight) * 100;
-        
-        document.querySelectorAll('.nav-links a.active').forEach(activeLink => {
-            const progressBar = activeLink.querySelector('.progress-bar');
-            if (progressBar) {
-                progressBar.style.width = `${scrollPercentage}%`;
-            }
-        });
-    }
-    
-    // Add progress bar to active link
-    document.querySelectorAll('.nav-links a.active').forEach(activeLink => {
-        const progressBar = document.createElement('div');
-        progressBar.className = 'progress-bar';
-        activeLink.appendChild(progressBar);
-        
-        // Initialize scroll position
-        updateScrollProgress();
-    });
+    // Initialize scroll position
+    updateScrollProgress();
 });
+
+/**
+ * Recursive function to create a typewriter effect
+ * @param {Array} lines - Array of text lines to animate
+ * @param {number} lineIndex - Current line index
+ * @param {number} charIndex - Current character index
+ * @param {number} typingSpeed - Speed of typing animation in ms
+ * @param {number} lineDelay - Delay between lines in ms
+ */
+function typeWriter(lines, lineIndex, charIndex, typingSpeed, lineDelay) {
+    if (lineIndex < lines.length) {
+        const line = lines[lineIndex];
+        const currentLineElement = document.getElementById(`line-${lineIndex}`);
+
+        if (charIndex < line.length) {
+            // Append the character to the current line
+            currentLineElement.textContent += line.charAt(charIndex);
+            charIndex++;
+            
+            // Make the resume button appear when last line starts typing
+            if (lineIndex === lines.length - 1 && charIndex === 1) {
+                showResumeButton();
+            }
+            
+            setTimeout(() => typeWriter(lines, lineIndex, charIndex, typingSpeed, lineDelay), typingSpeed);
+        } else {
+            lineIndex++;
+            charIndex = 0;
+            
+            // If last line is completed, show resume button (as a fallback)
+            if (lineIndex === lines.length) {
+                showResumeButton();
+            }
+            
+            setTimeout(() => typeWriter(lines, lineIndex, charIndex, typingSpeed, lineDelay), lineDelay);
+        }
+    }
+}
+
+/**
+ * Shows the resume button by removing the hidden class
+ */
+function showResumeButton() {
+    const resumeContainer = document.getElementById("resume-container");
+    if (resumeContainer) {
+        resumeContainer.classList.remove("hidden");
+    }
+}
+
+/**
+ * Updates the scroll progress bar for the active navigation link
+ */
+function updateScrollProgress() {
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPosition = window.scrollY;
+    const scrollPercentage = (scrollPosition / windowHeight) * 100;
+    
+    document.querySelectorAll('.nav-links a.active .progress-bar').forEach(progressBar => {
+        progressBar.style.width = `${scrollPercentage}%`;
+    });
+}
