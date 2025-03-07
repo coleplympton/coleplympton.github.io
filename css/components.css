@@ -1,0 +1,170 @@
+/* components.css - Reusable component styles */
+
+/* Button Styles */
+.game-button {
+    position: relative;
+    display: inline-block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    background: #4ECDC4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    background: #3db1a9;
+}
+
+.game-button::after {
+    content: "🎮";
+    margin-left: 8px;
+}
+
+/* Section headers */
+.section-header {
+    color: var(--accent-color);
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--accent-gradient);
+}
+
+/* Card styling */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    margin-bottom: 1rem;
+}
+
+/* Badge styling */
+.badge {
+    margin-right: 5px;
+    font-weight: normal;
+    padding: 6px 10px;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+.badge:last-child {
+    margin-right: 0;
+}
+
+/* GitHub button styling */
+.btn-primary {
+    background: var(--accent-gradient);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Media containers */
+.project-image-container {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+}
+
+/* Larger container for the conference room tablet project */
+.conference-room-tablet {
+    aspect-ratio: auto;
+    height: 450px;
+    padding: 15px;
+}
+
+/* Full width image that maintains aspect ratio */
+.full-width-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #f8f8f8;
+}
+
+/* Conference tablet image styling */
+.conference-tablet-img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Card image top styling */
+.card-img-top {
+    aspect-ratio: 16/9;
+    object-fit: contain;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Reveal Game Button */
+#reveal-game-button {
+    position: relative;
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    background: #4ECDC4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#reveal-game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    background: #3db1a9;
+}
+
+#reveal-game-button::after {
+    content: "🎮";
+    margin-left: 8px;
+}

@@ -1,3 +1,5 @@
+// hero-typing.js - Hero section typing animation
+
 document.addEventListener("DOMContentLoaded", () => {
     // Hero text animation
     const lines = [
@@ -24,37 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Start typing animation with faster speeds
         typeWriter(lines, 0, 0, 80, 80); // Reduced typing speed and line delay
     }
-    
-    // Make the gradient logo clickable to go to home page
-    const gradientLogo = document.querySelector(".gradient-logo");
-    if (gradientLogo) {
-        gradientLogo.addEventListener("click", () => {
-            window.location.href = "index.html";
-        });
-    }
-
-    // Set active navigation link based on current page
-    const currentPath = window.location.pathname.split("/").pop() || "index.html"; 
-    const navLinks = document.querySelectorAll(".nav-links a");
-
-    navLinks.forEach(link => {
-        if (link.getAttribute("href") === currentPath) {
-            link.classList.add("active");
-            
-            // Add progress bar to active link
-            const progressBar = document.createElement('div');
-            progressBar.className = 'progress-bar';
-            link.appendChild(progressBar);
-        } else {
-            link.classList.remove("active");
-        }
-    });
-    
-    // Scroll progress indicator
-    window.addEventListener('scroll', updateScrollProgress);
-    
-    // Initialize scroll position
-    updateScrollProgress();
 });
 
 /**
@@ -103,17 +74,4 @@ function showResumeButton() {
     if (resumeContainer) {
         resumeContainer.classList.remove("hidden");
     }
-}
-
-/**
- * Updates the scroll progress bar for the active navigation link
- */
-function updateScrollProgress() {
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollPosition = window.scrollY;
-    const scrollPercentage = (scrollPosition / windowHeight) * 100;
-    
-    document.querySelectorAll('.nav-links a.active .progress-bar').forEach(progressBar => {
-        progressBar.style.width = `${scrollPercentage}%`;
-    });
 }

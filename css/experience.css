@@ -1,0 +1,174 @@
+/* experience.css - Experience section styles with fixed alignment */
+
+/* Updated Experience Section Styles */
+.experience {
+    max-width: calc(var(--content-max-width) - 2 * var(--global-margin));
+    margin: 4rem auto;
+    padding: var(--section-padding);
+    text-align: center;
+}
+
+.experience-header {
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.8rem;
+    font-size: 2.2rem;
+    color: var(--accent-color);
+    text-align: center;
+    width: 100%;
+}
+
+.experience-header::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 4px;
+    background: var(--accent-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background: var(--accent-color);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.experience-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 45%;
+    border-top: 3px solid var(--accent-color);
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.job.left-align {
+    float: left;
+    text-align: left; /* FIXED: Changed from right to left align */
+    clear: both;
+}
+
+.job.right-align {
+    float: right;
+    text-align: left;
+    clear: both;
+}
+
+.experience-date {
+    position: absolute;
+    top: -15px;
+    width: auto;
+    z-index: 1;
+}
+
+.job.left-align .experience-date {
+    right: -75px;
+}
+
+.job.right-align .experience-date {
+    left: -75px;
+}
+
+.date-badge {
+    background: var(--accent-color);
+    color: var(--light-text-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+.company-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+}
+
+.job-title {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.responsibility-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    text-align: left; /* FIXED: Ensure all text is left-aligned */
+}
+
+/* FIXED: Adjusted positioning of bullet points */
+.responsibility-list li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px; /* Space for bullet point */
+    line-height: 1.5;
+}
+
+/* FIXED: Use consistent left bullet point for all items */
+.responsibility-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0; /* Position bullet on the left for all items */
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Clear fix for floated elements */
+.timeline-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .timeline-container::before {
+        left: 20px; /* Move timeline to left side on mobile */
+    }
+    
+    .experience-card {
+        width: calc(100% - 40px);
+        margin-left: 40px;
+        float: none !important;
+    }
+    
+    .job.left-align .experience-date,
+    .job.right-align .experience-date {
+        left: -60px;
+        right: auto;
+        width: 100px;
+        text-align: right;
+    }
+    
+    .date-badge {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+}
