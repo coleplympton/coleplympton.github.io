@@ -75,7 +75,7 @@ body {
     text-align: left;
     word-wrap: break-word;
     overflow-wrap: break-word; /* Added to help with text wrapping on mobile */
-    hyphens: none; /* Changed from auto to none to prevent hyphenation */
+    hyphens: manual; /* Changed from auto to manual to prevent automatic hyphenation */
 }
 
 /* Typed lines */
@@ -84,7 +84,8 @@ body {
     min-height: 1.2em;
     white-space: normal; /* Changed from nowrap to allow wrapping on mobile */
     margin-bottom: 0.2em; /* Added spacing between lines */
-    hyphens: none; /* Added to ensure no hyphenation in typed lines */
+    hyphens: none; /* Explicitly disable hyphenation in typed lines */
+    word-break: normal; /* Ensure words break naturally at the end of lines */
 }
 
 .resume-container {
