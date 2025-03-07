@@ -24,6 +24,11 @@
     background: #3db1a9; /* Slightly darker on hover */
 }
 
+#reveal-game-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 #reveal-game-button::after {
     content: "🎮";
     margin-left: 8px;
@@ -119,6 +124,9 @@
     text-align: center;
     transition: all 0.2s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    user-select: none; /* Prevent text selection during drag */
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .cable-item {
@@ -128,6 +136,7 @@
 .cable-item.dragging {
     opacity: 0.6;
     transform: scale(1.05);
+    z-index: 100; /* Ensure dragged item appears above others */
 }
 
 .port-item.dragover {
@@ -150,6 +159,8 @@
     width: 90px; /* Increased from 70px */
     height: 90px; /* Increased from 70px */
     object-fit: contain;
+    pointer-events: none; /* Prevent image from interfering with touch events */
+    -webkit-user-drag: none; /* Prevent native dragging on Safari */
 }
 
 .connected {
@@ -202,6 +213,11 @@
     background: #3db1a9; /* Darker on hover */
 }
 
+.game-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
 .game-instructions {
     margin-top: 15px;
     padding: 10px;
@@ -210,11 +226,12 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Mobile responsiveness */
+/* Improved Mobile responsiveness */
 @media (max-width: 768px) {
     #cable-game-container {
         padding: 15px 10px;
         max-height: none; /* Allow scrolling on mobile */
+        margin: 15px 10px; /* Reduced margin on smaller screens */
     }
     
     .game-area {
@@ -228,15 +245,27 @@
         align-items: center;
         text-align: center;
     }
+
+    .game-title {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
     
     .cable-item, .port-item {
         width: 100px;
         height: 100px;
+        padding: 8px;
     }
     
     .cable-item img, .port-item img {
         width: 75px;
         height: 75px;
+    }
+
+    /* Ensure good tap/touch target size */
+    .game-button {
+        padding: 12px 24px; /* Larger tap target */
+        min-width: 120px;
     }
 }
 
@@ -253,5 +282,19 @@
     .cable-item img, .port-item img {
         width: 65px;
         height: 65px;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    /* Improve instruction readability on very small screens */
+    .game-instructions {
+        font-size: 0.85rem;
+        padding: 8px 5px;
     }
 }

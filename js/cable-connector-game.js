@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let ports = [];
     let connectedPairs = 0;
     let requiredPairs = 5; // Number of successful connections needed
+    let draggedCable = null; // Track which cable is being dragged (for touch devices)
     
     // Cable types with matching ports
     const cableTypes = [
@@ -70,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         timeLeft = 60;
         gameActive = true;
         connectedPairs = 0;
+        draggedCable = null;
         
         // Get game elements
         const timerDisplay = document.getElementById('game-timer');
@@ -116,6 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Make cable draggable
             cable.setAttribute('draggable', true);
             cable.addEventListener('dragstart', handleDragStart);
+            
+            // Add touch events for mobile devices
+            cable.addEventListener('touchstart', handleTouchStart, { passive: false });
+            cable.addEventListener('touchmove', handleTouchMove, { passive: false });
+            cable.addEventListener('touchend', handleTouchEnd, { passive: false });
         });
         
         // Shuffle the port order to make it more challenging
@@ -133,10 +140,179 @@ document.addEventListener('DOMContentLoaded', function() {
             port.addEventListener('dragleave', function(e) {
                 this.classList.remove('dragover');
             });
+            
+            // Add touch event listeners for ports
+            port.addEventListener('touchstart', handlePortTouchStart, { passive: true });
+            port.addEventListener('touchend', handlePortTouchEnd, { passive: true });
         });
+        
+        // Add instruction for mobile users
+        const instructionsDiv = document.querySelector('.game-instructions');
+        if (instructionsDiv && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            instructionsDiv.innerHTML = '<p>Tap a cable, then tap its matching port to connect them. Successfully connected cables will remain green. Connect all cables before the timer runs out!</p>';
+        }
         
         // Start the timer
         startTimer();
+    }
+    
+    // Touch event handlers for cables
+    function handleTouchStart(e) {
+        // Only allow touch if not already connected
+        if (this.classList.contains('connected')) {
+            return;
+        }
+        
+        e.preventDefault(); // Prevent scrolling
+        draggedCable = this;
+        this.classList.add('dragging');
+    }
+    
+    function handleTouchMove(e) {
+        if (!draggedCable) return;
+        e.preventDefault(); // Prevent scrolling
+        
+        // Get touch coordinates
+        const touch = e.touches[0];
+        
+        // Highlight any ports under the touch point
+        ports.forEach(port => {
+            if (port.classList.contains('connected')) return;
+            
+            const rect = port.getBoundingClientRect();
+            if (
+                touch.clientX >= rect.left &&
+                touch.clientX <= rect.right &&
+                touch.clientY >= rect.top &&
+                touch.clientY <= rect.bottom
+            ) {
+                port.classList.add('dragover');
+            } else {
+                port.classList.remove('dragover');
+            }
+        });
+    }
+    
+    function handleTouchEnd(e) {
+        if (!draggedCable) return;
+        e.preventDefault();
+        
+        // Find port under touch point
+        const touch = e.changedTouches[0];
+        let targetPort = null;
+        
+        ports.forEach(port => {
+            if (port.classList.contains('connected')) return;
+            
+            const rect = port.getBoundingClientRect();
+            if (
+                touch.clientX >= rect.left &&
+                touch.clientX <= rect.right &&
+                touch.clientY >= rect.top &&
+                touch.clientY <= rect.bottom
+            ) {
+                targetPort = port;
+            }
+        });
+        
+        // If found a port, attempt to connect
+        if (targetPort) {
+            // Check if it's a match
+            const cableType = draggedCable.dataset.type;
+            const portType = targetPort.dataset.type;
+            
+            if (cableType === portType) {
+                // Correct match
+                playSound('correct');
+                score += 10;
+                document.getElementById('game-score').textContent = score;
+                
+                // Disable matched items but keep them visible with green background
+                draggedCable.classList.add('connected');
+                targetPort.classList.add('connected');
+                draggedCable.setAttribute('draggable', false);
+                
+                // Update connected pairs
+                connectedPairs++;
+                
+                // Check if all required connections are made
+                if (connectedPairs >= requiredPairs) {
+                    endGame(true);
+                }
+            } else {
+                // Incorrect match
+                playSound('wrong');
+                score = Math.max(0, score - 5); // Subtract points, but don't go below 0
+                document.getElementById('game-score').textContent = score;
+                
+                // Visual feedback for incorrect match
+                targetPort.classList.add('wrong-match');
+                setTimeout(() => {
+                    targetPort.classList.remove('wrong-match');
+                }, 500);
+            }
+        }
+        
+        // Clean up
+        ports.forEach(port => port.classList.remove('dragover'));
+        draggedCable.classList.remove('dragging');
+        draggedCable = null;
+    }
+    
+    // Touch events for ports (simpler alternative method)
+    function handlePortTouchStart(e) {
+        // Only process if we have a dragged cable and port is not connected
+        if (!draggedCable || this.classList.contains('connected')) return;
+        
+        this.classList.add('dragover');
+    }
+    
+    function handlePortTouchEnd(e) {
+        // Only process if we have a dragged cable and port is not connected
+        if (!draggedCable || this.classList.contains('connected')) {
+            this.classList.remove('dragover');
+            return;
+        }
+        
+        // Check if it's a match
+        const cableType = draggedCable.dataset.type;
+        const portType = this.dataset.type;
+        
+        if (cableType === portType) {
+            // Correct match
+            playSound('correct');
+            score += 10;
+            document.getElementById('game-score').textContent = score;
+            
+            // Disable matched items but keep them visible with green background
+            draggedCable.classList.add('connected');
+            this.classList.add('connected');
+            draggedCable.setAttribute('draggable', false);
+            
+            // Update connected pairs
+            connectedPairs++;
+            
+            // Check if all required connections are made
+            if (connectedPairs >= requiredPairs) {
+                endGame(true);
+            }
+        } else {
+            // Incorrect match
+            playSound('wrong');
+            score = Math.max(0, score - 5); // Subtract points, but don't go below 0
+            document.getElementById('game-score').textContent = score;
+            
+            // Visual feedback for incorrect match
+            this.classList.add('wrong-match');
+            setTimeout(() => {
+                this.classList.remove('wrong-match');
+            }, 500);
+        }
+        
+        // Clean up
+        this.classList.remove('dragover');
+        draggedCable.classList.remove('dragging');
+        draggedCable = null;
     }
     
     function handleDragStart(e) {
@@ -148,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         e.dataTransfer.setData('text/plain', e.target.closest('.cable-item').dataset.type);
         e.target.closest('.cable-item').classList.add('dragging');
+        draggedCable = e.target.closest('.cable-item');
     }
     
     function handleDragOver(e) {
@@ -176,6 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!cableElement) return;
         
         cableElement.classList.remove('dragging');
+        draggedCable = null;
         
         if (cableType === portType) {
             // Correct match

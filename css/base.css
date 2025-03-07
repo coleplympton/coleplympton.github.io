@@ -18,6 +18,7 @@ html {
     scroll-behavior: smooth;
     height: 100%;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* Remove tap highlight on mobile */
 }
 
 *, *:before, *:after {
@@ -350,7 +351,7 @@ footer a:hover {
     display: none;
 }
 
-/* Responsive Design */
+/* Improved Responsive Design */
 @media (max-width: 1200px) {
     :root {
         --global-margin: 1.5rem;
@@ -361,13 +362,109 @@ footer a:hover {
     }
 }
 
-@media (max-width: 768px) {
-    .about-me {
-        flex-direction: column;
-        text-align: center;
+@media (max-width: 900px) {
+    #hero-text {
+        font-size: 2.5rem;
     }
     
     .about-text .intro-statement {
         font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 8rem; /* Increased padding for stacked header on mobile */
+    }
+
+    .about-me {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+        margin: 5vh auto;
+        gap: 1.5rem;
+    }
+    
+    .about-text .intro-statement {
+        font-size: 1.8rem;
+    }
+    
+    .about-me img {
+        max-width: 200px; /* Make image smaller on mobile */
+    }
+    
+    .about-text {
+        font-size: 1.1rem;
+    }
+    
+    .hero {
+        min-height: 80vh; /* Reduce minimum height on mobile */
+        padding-top: 10vh;
+    }
+    
+    .contact {
+        margin: 5vh auto;
+        padding: 1.5rem;
+    }
+    
+    .contact h1 {
+        font-size: 2rem;
+    }
+
+    /* Improve carousel controls for touch */
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --global-margin: 1rem;
+        --section-padding: 1.5rem;
+    }
+    
+    body {
+        padding-top: 7rem;
+    }
+    
+    #hero-text {
+        font-size: 2rem;
+    }
+    
+    .resume-link {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .about-text .intro-statement {
+        font-size: 1.5rem;
+    }
+    
+    .carousel-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .carousel-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact h1 {
+        font-size: 1.8rem;
+    }
+    
+    .contact p {
+        font-size: 1rem;
+    }
+    
+    /* Improve contact links spacing on very small screens */
+    .contact-links {
+        gap: 1rem;
+    }
+    
+    .contact-links a img {
+        width: 35px;
+        height: 35px;
     }
 }

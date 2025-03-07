@@ -38,6 +38,11 @@ header {
     color: #FFC300;
 }
 
+/* Make touch targets larger for mobile */
+.nav-links a {
+    padding: 5px 8px;
+}
+
 /* Progress bar styling */
 .nav-links a.active {
     position: relative;
@@ -154,7 +159,7 @@ header {
     100% { background-position: 0% 50%; }
 }
 
-/* Responsive adjustments for header */
+/* Enhanced Responsive adjustments for header */
 @media (max-width: 768px) {
     header {
         padding: 1rem;
@@ -164,9 +169,67 @@ header {
     
     .nav-links {
         gap: 1rem;
+        width: 100%;
+        justify-content: space-around;
     }
     
     .nav-links a {
         font-size: 1.2rem;
+        padding: 5px 10px; /* Larger touch target */
+    }
+    
+    /* Improved logo container for mobile */
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Show social icons in a row beneath the logo on mobile */
+    .social-icons-wrapper {
+        position: static;
+        width: auto;
+        opacity: 1;
+        margin-left: 1rem;
+    }
+    
+    .social-icon {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0.8rem 0.5rem;
+    }
+    
+    .nav-links {
+        gap: 0.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 1rem;
+        padding: 5px 8px;
+    }
+    
+    .gradient-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .social-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .social-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .social-icons-wrapper {
+        gap: 10px;
+        margin-left: 0.5rem;
     }
 }
