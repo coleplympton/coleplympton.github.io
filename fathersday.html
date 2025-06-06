@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Father's Day, Dad!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .card-shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .cat-1 {
+            animation: inch-closer-1 3s ease-in-out infinite alternate;
+        }
+        
+        .cat-2 {
+            animation: inch-closer-2 3.5s ease-in-out infinite alternate;
+        }
+        
+        .cat-3 {
+            animation: inch-closer-3 2.8s ease-in-out infinite alternate;
+        }
+        
+        .cat-tail-1 {
+            animation: tail-wag-1 2s ease-in-out infinite;
+            transform-origin: 95% 95%;
+        }
+        
+        .cat-tail-2 {
+            animation: tail-wag-2 2.3s ease-in-out infinite;
+            transform-origin: 5% 95%;
+        }
+        
+        .cat-tail-3 {
+            animation: tail-wag-3 1.8s ease-in-out infinite;
+            transform-origin: 95% 95%;
+        }
+        
+        .heart-eyes {
+            animation: heart-pulse 1.5s ease-in-out infinite;
+        }
+        
+        .can-shine {
+            animation: shine 3s ease-in-out infinite;
+        }
+        
+        .punchline {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: reveal 0.8s ease-out 2s forwards;
+        }
+        
+        .love-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            transition: all 0.3s ease;
+        }
+        
+        .love-button:hover {
+            background: linear-gradient(45deg, #ff5252, #ff7979);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        .blink {
+            animation: blink 3s ease-in-out infinite;
+        }
+        
+        .whiskers {
+            stroke-dasharray: 2, 4;
+            animation: whisker-twitch 2s ease-in-out infinite;
+        }
+        
+        @keyframes inch-closer-1 {
+            0% { transform: translateX(0) scale(1); }
+            100% { transform: translateX(12px) scale(1.05); }
+        }
+        
+        @keyframes inch-closer-2 {
+            0% { transform: translateX(0) scale(1); }
+            100% { transform: translateX(-8px) scale(1.03); }
+        }
+        
+        @keyframes inch-closer-3 {
+            0% { transform: translateX(0) scale(1); }
+            100% { transform: translateX(10px) scale(1.04); }
+        }
+        
+        @keyframes tail-wag-1 {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(15deg); }
+        }
+        
+        @keyframes tail-wag-2 {
+            0%, 100% { transform: rotate(10deg); }
+            50% { transform: rotate(-15deg); }
+        }
+        
+        @keyframes tail-wag-3 {
+            0%, 100% { transform: rotate(-8deg); }
+            50% { transform: rotate(12deg); }
+        }
+        
+        @keyframes heart-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @keyframes shine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.4) saturate(1.2); }
+        }
+        
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+        
+        @keyframes whisker-twitch {
+            0%, 80%, 100% { stroke-dashoffset: 0; }
+            85% { stroke-dashoffset: 2; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="gradient-bg flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-3xl card-shadow p-8 text-center fade-in">
+        <!-- Header -->
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight">
+            Happy Father's Day!
+        </h1>
+        
+        <!-- Cat Scene -->
+        <div class="relative mb-8 bg-gradient-to-b from-blue-50 to-blue-100 rounded-2xl p-6 overflow-hidden">
+            <!-- Can of Food -->
+            <div class="flex justify-center mb-6">
+                <div class="can-shine relative">
+                    <svg width="60" height="80" viewBox="0 0 60 80">
+                        <!-- Can body -->
+                        <rect x="5" y="8" width="50" height="65" fill="url(#canGradient)" rx="4"/>
+                        <!-- Can top -->
+                        <ellipse cx="30" cy="8" rx="25" ry="4" fill="#c0392b"/>
+                        <!-- Label -->
+                        <rect x="10" y="25" width="40" height="25" fill="#fff" rx="2"/>
+                        <text x="30" y="35" text-anchor="middle" font-size="8" font-weight="bold" fill="#c0392b">PREMIUM</text>
+                        <text x="30" y="45" text-anchor="middle" font-size="10" font-weight="bold" fill="#c0392b">TUNA</text>
+                        <!-- Shine effect -->
+                        <rect x="12" y="15" width="3" height="50" fill="rgba(255,255,255,0.3)" rx="1"/>
+                        <defs>
+                            <linearGradient id="canGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#e74c3c"/>
+                                <stop offset="100%" style="stop-color:#c0392b"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Cats -->
+            <div class="flex justify-center items-end space-x-8">
+                <!-- Cat 1 - White with black and orange patches -->
+                <div class="cat-1">
+                    <svg width="80" height="70" viewBox="0 0 80 70">
+                        <!-- Tail -->
+                        <path class="cat-tail-1" d="M52 45 Q65 40 60 25" stroke="#f8f9fa" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <path d="M52 45 Q58 38 55 30" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <!-- Body -->
+                        <ellipse cx="35" cy="45" rx="18" ry="12" fill="#f8f9fa"/>
+                        <!-- Black patches on body -->
+                        <ellipse cx="28" cy="42" rx="4" ry="3" fill="#333"/>
+                        <ellipse cx="42" cy="48" rx="3" ry="2" fill="#ff8c42"/>
+                        <!-- Head -->
+                        <circle cx="35" cy="25" r="15" fill="#f8f9fa"/>
+                        <!-- Black patch on head -->
+                        <ellipse cx="30" cy="20" rx="5" ry="4" fill="#333"/>
+                        <!-- Orange patch -->
+                        <ellipse cx="42" cy="22" rx="3" ry="3" fill="#ff8c42"/>
+                        <!-- Ears -->
+                        <polygon points="25,15 30,5 35,15" fill="#f8f9fa"/>
+                        <polygon points="35,15 40,5 45,15" fill="#f8f9fa"/>
+                        <polygon points="27,13 30,8 33,13" fill="#ffb3ba"/>
+                        <polygon points="37,13 40,8 43,13" fill="#ffb3ba"/>
+                        <!-- Regular eyes -->
+                        <circle cx="30" cy="22" r="3" fill="#333"/>
+                        <circle cx="40" cy="22" r="3" fill="#333"/>
+                        <circle cx="31" cy="21" r="1" fill="#fff"/>
+                        <circle cx="41" cy="21" r="1" fill="#fff"/>
+                        <!-- Nose -->
+                        <polygon points="35,27 33,29 37,29" fill="#ff1493"/>
+                        <!-- Mouth -->
+                        <path d="M35 29 Q32 32 30 30" stroke="#333" stroke-width="1" fill="none"/>
+                        <path d="M35 29 Q38 32 40 30" stroke="#333" stroke-width="1" fill="none"/>
+                        <!-- Whiskers -->
+                        <line class="whiskers" x1="20" y1="25" x2="28" y2="24" stroke="#333" stroke-width="1"/>
+                        <line class="whiskers" x1="20" y1="28" x2="28" y2="28" stroke="#333" stroke-width="1"/>
+                        <line class="whiskers" x1="42" y1="24" x2="50" y2="25" stroke="#333" stroke-width="1"/>
+                        <line class="whiskers" x1="42" y1="28" x2="50" y2="28" stroke="#333" stroke-width="1"/>
+                    </svg>
+                </div>
+                
+                <!-- Cat 2 - Gray and Fat -->
+                <div class="cat-2">
+                    <svg width="90" height="70" viewBox="0 0 90 70">
+                        <!-- Tail -->
+                        <path class="cat-tail-2" d="M28 48 Q15 43 18 28" stroke="#7f8c8d" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <!-- Fat Body -->
+                        <ellipse cx="45" cy="47" rx="22" ry="15" fill="#95a5a6"/>
+                        <!-- Head -->
+                        <circle cx="45" cy="25" r="16" fill="#95a5a6"/>
+                        <!-- Ears -->
+                        <polygon points="34,14 39,4 44,14" fill="#95a5a6"/>
+                        <polygon points="46,14 51,4 56,14" fill="#95a5a6"/>
+                        <polygon points="36,12 39,7 42,12" fill="#bdc3c7"/>
+                        <polygon points="48,12 51,7 54,12" fill="#bdc3c7"/>
+                        <!-- Regular eyes -->
+                        <circle cx="39" cy="22" r="3" fill="#333"/>
+                        <circle cx="51" cy="22" r="3" fill="#333"/>
+                        <circle cx="40" cy="21" r="1" fill="#fff"/>
+                        <circle cx="52" cy="21" r="1" fill="#fff"/>
+                        <!-- Nose -->
+                        <polygon points="45,27 43,29 47,29" fill="#ff1493"/>
+                        <!-- Mouth -->
+                        <path d="M45 29 Q42 32 40 30" stroke="#333" stroke-width="1" fill="none"/>
+                        <path d="M45 29 Q48 32 50 30" stroke="#333" stroke-width="1" fill="none"/>
+                        <!-- Whiskers -->
+                        <line class="whiskers" x1="28" y1="25" x2="36" y2="24" stroke="#333" stroke-width="1"/>
+                        <line class="whiskers" x1="28" y1="28" x2="36" y2="28" stroke="#333" stroke-width="1"/>
+                        <line class="whiskers" x1="54" y1="24" x2="62" y2="25" stroke="#333" stroke-width="1"/>
+                        <line class="whiskers" x1="54" y1="28" x2="62" y2="28" stroke="#333" stroke-width="1"/>
+                    </svg>
+                </div>
+                
+                <!-- Cat 3 - Brown with Dark Stripes -->
+                <div class="cat-3">
+                    <svg width="80" height="70" viewBox="0 0 80 70">
+                        <!-- Tail -->
+                        <path class="cat-tail-3" d="M52 45 Q65 40 60 25" stroke="#8b4513" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <path d="M54 42 Q60 38 58 32" stroke="#654321" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <path d="M56 39 Q62 35 59 29" stroke="#654321" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <!-- Body -->
+                        <ellipse cx="35" cy="45" rx="18" ry="12" fill="#8b4513"/>
+                        <!-- Dark stripes on body -->
+                        <ellipse cx="35" cy="40" rx="12" ry="2" fill="#654321"/>
+                        <ellipse cx="35" cy="45" rx="14" ry="2" fill="#654321"/>
+                        <ellipse cx="35" cy="50" rx="10" ry="2" fill="#654321"/>
+                        <!-- Head -->
+                        <circle cx="35" cy="25" r="15" fill="#8b4513"/>
+                        <!-- Dark stripes on head -->
+                        <ellipse cx="35" cy="18" rx="8" ry="1.5" fill="#654321"/>
+                        <ellipse cx="35" cy="22" rx="10" ry="1.5" fill="#654321"/>
+                        <ellipse cx="35" cy="26" rx="9" ry="1.5" fill="#654321"/>
+                        <ellipse cx="35" cy="30" rx="7" ry="1.5" fill="#654321"/>
+                        <!-- Ears -->
+                        <polygon points="25,15 30,5 35,15" fill="#8b4513"/>
+                        <polygon points="35,15 40,5 45,15" fill="#8b4513"/>
+                        <polygon points="27,13 30,8 33,13" fill="#a0522d"/>
+                        <polygon points="37,13 40,8 43,13" fill="#a0522d"/>
+                        <!-- Regular eyes -->
+                        <circle cx="30" cy="22" r="3" fill="#333"/>
+                        <circle cx="40" cy="22" r="3" fill="#333"/>
+                        <circle cx="31" cy="21" r="1" fill="#fff"/>
+                        <circle cx="41" cy="21" r="1" fill="#fff"/>
+                        <!-- Nose -->
+                        <polygon points="35,27 33,29 37,29" fill="#ff1493"/>
+                        <!-- Mouth -->
+                        <path d="M35 29 Q32 32 30 30" stroke="#333" stroke-width="1" fill="none"/>
+                        <path d="M35 29 Q38 32 40 30" stroke="#333" stroke-width="1" fill="none"/>
+                        <!-- Whiskers -->
+                        <line class="whiskers" x1="20" y1="25" x2="28" y2="24" stroke="#333" stroke-width="1"/>
+                        <line class="whiskers" x1="20" y1="28" x2="28" y2="28" stroke="#333" stroke-width="1"/>
+                        <line class="whiskers" x1="42" y1="24" x2="50" y2="25" stroke="#333" stroke-width="1"/>
+                        <line class="whiskers" x1="42" y1="28" x2="50" y2="28" stroke="#333" stroke-width="1"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Joke Setup -->
+        <div class="mb-4">
+            <p class="text-lg font-semibold text-gray-700 mb-3">
+                We all pretend to love you...
+            </p>
+        </div>
+        
+        <!-- Punchline -->
+        <div class="punchline mb-6">
+            <p class="text-lg font-bold text-purple-600">
+                but really, it's because you're the guy with the can opener! 🥫
+            </p>
+        </div>
+        
+        <!-- Personal Message -->
+        <div class="bg-gray-50 rounded-2xl p-6 mb-6">
+            <p class="text-gray-700 leading-relaxed">
+                Happy Father’s Day!
+                Thank you for always being there with support, wisdom, and love.
+                I’m lucky to have you as my dad.
+            </p>
+            <p class="text-sm text-gray-500 mt-3 italic">
+                - Your loving family
+            </p>
+        </div>
+        
+        <!-- Love Button -->
+        <button class="love-button text-white font-bold py-4 px-8 rounded-full text-lg w-full">
+            ❤️ Happy Father's Day! ❤️
+        </button>
+        
+        <!-- Footer -->
+        <div class="mt-6 text-center">
+            <p class="text-sm text-gray-500">
+                For David Plympton • Created by Cole Plympton
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Add click event to the love button
+        document.querySelector('.love-button').addEventListener('click', function() {
+            // Create heart animation
+            const hearts = ['❤️', '💖', '💕', '💝'];
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.top = window.innerHeight + 'px';
+                    heart.style.fontSize = '24px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+                    heart.style.animation = 'floatUp 3s ease-out forwards';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 100);
+            }
+        });
+        
+        // Add floating hearts animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
